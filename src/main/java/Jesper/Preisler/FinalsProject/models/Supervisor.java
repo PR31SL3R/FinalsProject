@@ -7,7 +7,6 @@ import java.util.Set;
 public class Supervisor {
 
    @Id
-   // *
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    Long supervisorId;
 
@@ -17,10 +16,21 @@ public class Supervisor {
    @Column
    String supervisorLastName;
 
-   @OneToMany
+   String supervisorEmail;
+
+
+   // *
+   @OneToMany(cascade = CascadeType.ALL, mappedBy = "supervisor")
    private Set < Student > students;
 
 
+   public String getSupervisorEmail() {
+        return supervisorEmail;
+    }
+
+    public void setSupervisorEmail(String supervisorEmail) {
+        this.supervisorEmail = supervisorEmail;
+    }
 
     public Long getSupervisorId() {
         return supervisorId;

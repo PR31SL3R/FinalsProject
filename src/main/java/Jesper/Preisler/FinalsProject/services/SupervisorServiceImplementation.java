@@ -19,21 +19,22 @@ public class SupervisorServiceImplementation implements SupervisorService{
 
     @Override
     public List<Supervisor> findAll() {
-        return null;
+        return supervisorRepository.findAll();
     }
 
     @Override
     public Supervisor save(Supervisor object) {
-        return null;
+        return supervisorRepository.save(object);
     }
 
     @Override
     public void deleteById(Long aLong) {
+        supervisorRepository.deleteById(aLong);
 
     }
 
     @Override
     public Optional<Supervisor> findById(Long aLong) {
-        return Optional.empty();
+        return supervisorRepository.findById(aLong);
     }
 }
