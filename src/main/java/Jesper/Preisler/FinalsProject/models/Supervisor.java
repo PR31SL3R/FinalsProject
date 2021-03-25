@@ -1,5 +1,7 @@
 package Jesper.Preisler.FinalsProject.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -17,11 +19,15 @@ public class Supervisor {
    String supervisorLastName;
 
    String supervisorEmail;
+/*
+    @OneToMany(
+            mappedBy = "studentId",
+            orphanRemoval = true,
+            cascade = CascadeType.ALL)
+    @JsonBackReference
+    private Set < Student > students;
 
-
-   // *
-   @OneToMany(cascade = CascadeType.ALL, mappedBy = "supervisor")
-   private Set < Student > students;
+ */
 
 
    public String getSupervisorEmail() {
@@ -55,7 +61,7 @@ public class Supervisor {
     public void setSupervisorLastName(String supervisorLastName) {
         this.supervisorLastName = supervisorLastName;
     }
-
+/*
     public Set<Student> getStudents() {
         return students;
     }
@@ -63,4 +69,8 @@ public class Supervisor {
     public void setStudents(Set<Student> students) {
         this.students = students;
     }
+
+ */
+
+
 }

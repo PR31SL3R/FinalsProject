@@ -76,7 +76,7 @@ public class RestApiController {
     }
 
     // Supervisor Get student by id
-    @GetMapping("/getSupervisorById/{studentId}")
+    @GetMapping("/getSupervisorById/{supervisorId}")
     public Optional<Supervisor> getSupervisorById(@PathVariable Long supervisorId){
         return supervisorServiceImplementation.findById(supervisorId);
     }
@@ -99,7 +99,6 @@ public class RestApiController {
                     supervisor.setSupervisorFirstName(newSupervisor.getSupervisorFirstName());
                     supervisor.setSupervisorLastName(newSupervisor.getSupervisorLastName());
                     supervisor.setSupervisorEmail(newSupervisor.getSupervisorEmail());
-                    supervisor.setStudents(newSupervisor.getStudents());
                     return supervisorServiceImplementation.save(supervisor);
                 })
                 .orElseGet(() -> supervisorServiceImplementation.save(newSupervisor));
