@@ -81,10 +81,10 @@ public class RestApiController {
         return supervisorServiceImplementation.findById(supervisorId);
     }
 
-    // * Supervisor create Student
+    // * Supervisor create supervisor
     @PostMapping("/createSupervisor")
     public Supervisor createSupervisor(@RequestBody Supervisor supervisor){
-        supervisor.setSupervisorId(null);
+
 
         return supervisorServiceImplementation.save(supervisor);
     }

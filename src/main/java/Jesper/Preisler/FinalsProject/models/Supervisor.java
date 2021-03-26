@@ -19,15 +19,12 @@ public class Supervisor {
    String supervisorLastName;
 
    String supervisorEmail;
-/*
-    @OneToMany(
-            mappedBy = "studentId",
-            orphanRemoval = true,
-            cascade = CascadeType.ALL)
-    @JsonBackReference
+
+    @OneToMany(targetEntity=Student.class,cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY, orphanRemoval = true)
     private Set < Student > students;
 
- */
+
 
 
    public String getSupervisorEmail() {
@@ -61,7 +58,7 @@ public class Supervisor {
     public void setSupervisorLastName(String supervisorLastName) {
         this.supervisorLastName = supervisorLastName;
     }
-/*
+
     public Set<Student> getStudents() {
         return students;
     }
@@ -70,7 +67,7 @@ public class Supervisor {
         this.students = students;
     }
 
- */
+
 
 
 }

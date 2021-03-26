@@ -55,10 +55,30 @@
                 <button id="cancelAddStudentForm" type="button" class="btn btn-danger pull-right">Cancel</button>
                 <button id="btnAddStudent" type="button" class="btn btn-success pull-right">Create</button>
             </form>
+            <form>
+                <br>
+                <br>
+                <br>
+                <h3>Add Supervisor</h3>
+                <div class="form-group">
+                    <label for="addSupervisorFirstName">First Name</label>
+                    <input type="text" class="form-control" id="addSupervisorFirstName" placeholder="Enter first name">
+                </div>
+                <div class="form-group">
+                    <label for="addSupervisorLastName">Last Name</label>
+                    <input type="text" class="form-control" id="addSupervisorLastName" placeholder="Enter last name">
+                </div>
+                <div class="form-group">
+                    <label for="supervisorEmail">Email address</label>
+                    <input type="email" class="form-control" id="supervisorEmail" placeholder="name@example.com">
+                </div>
+                <button id="cancelAddSupervisorForm" type="button" class="btn btn-danger pull-right">Cancel</button>
+                <button id="btnAddSupervisor" type="button" class="btn btn-success pull-right">Create</button>
+            </form>
         </div>
         <div class="col-sm-9">
             <h2>List of Students</h2>
-            <table class="table">
+            <table class="table" id="searchTable">
                 <thead>
                 <tr>
                     <th></th>

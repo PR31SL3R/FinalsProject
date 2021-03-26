@@ -1,6 +1,5 @@
 package Jesper.Preisler.FinalsProject.models;
 
-
 import javax.persistence.*;
 
 @Entity
@@ -22,9 +21,8 @@ public class Student {
     @Column
     String studentComments;
 
-
-    @ManyToOne
-    @JoinColumn(name ="supervisorId")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name ="supervisor_id")
     Supervisor supervisor;
 
     public Long getStudentId() {

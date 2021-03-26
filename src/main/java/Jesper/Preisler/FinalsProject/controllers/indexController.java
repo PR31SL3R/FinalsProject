@@ -12,4 +12,5 @@ public class indexController {
 
         return "index.html";
     }
+
 }
