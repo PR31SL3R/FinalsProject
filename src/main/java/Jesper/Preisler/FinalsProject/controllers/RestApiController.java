@@ -26,22 +26,22 @@ public class RestApiController {
         this.supervisorServiceImplementation = supervisorServiceImplementation;
         this.studentServiceImplementation = studentServiceImplementation;
     }
+
     // Students Get All Students
     @GetMapping("/getAllStudents")
-    public List<Student>  getAllstudents(){
+    public List<Student> getAllstudents() {
         return studentServiceImplementation.findAll();
     }
 
     // Student Get student by id
     @GetMapping("/getStudentById/{studentId}")
-    public Optional<Student> getStudentById(@PathVariable Long studentId){
+    public Optional<Student> getStudentById(@PathVariable Long studentId) {
         return studentServiceImplementation.findById(studentId);
     }
 
     // * Student create Student
     @PostMapping("/createStudent")
-    public Student createStudent(@RequestBody Student student){
-        student.setStudentId(null);
+    public Student createStudent(@RequestBody Student student) {
         return studentServiceImplementation.save(student);
     }
 
@@ -62,7 +62,7 @@ public class RestApiController {
 
 
     @DeleteMapping("deleteStudent/{studentId}")
-    public ResponseEntity deleteStudentById(@PathVariable Long studentId){
+    public ResponseEntity deleteStudentById(@PathVariable Long studentId) {
         studentServiceImplementation.deleteById(studentId);
 
         return ResponseEntity.ok("Student Deleted");
@@ -71,19 +71,19 @@ public class RestApiController {
 
     // Supervisor Get All Students
     @GetMapping("/getAllSupervisors")
-    public List<Supervisor>getAllSupervisors(){
+    public List<Supervisor> getAllSupervisors() {
         return supervisorServiceImplementation.findAll();
     }
 
     // Supervisor Get student by id
     @GetMapping("/getSupervisorById/{supervisorId}")
-    public Optional<Supervisor> getSupervisorById(@PathVariable Long supervisorId){
+    public Optional<Supervisor> getSupervisorById(@PathVariable Long supervisorId) {
         return supervisorServiceImplementation.findById(supervisorId);
     }
 
     // * Supervisor create supervisor
     @PostMapping("/createSupervisor")
-    public Supervisor createSupervisor(@RequestBody Supervisor supervisor){
+    public Supervisor createSupervisor(@RequestBody Supervisor supervisor) {
 
 
         return supervisorServiceImplementation.save(supervisor);
@@ -106,14 +106,31 @@ public class RestApiController {
 
     // Supervisor delete supervisor
     @DeleteMapping("deleteSupervisor/{supervisorId}")
-    public ResponseEntity deleteSupervisorById(@PathVariable Long supervisorId){
+    public ResponseEntity deleteSupervisorById(@PathVariable Long supervisorId) {
         supervisorServiceImplementation.deleteById(supervisorId);
         return ResponseEntity.ok("supervisor Deleted");
     }
 
-
-
+    @PutMapping("/getSupervisorName/{supervisorId}")
+    Supervisor function(@RequestBody Supervisor newSupervisor, @PathVariable Long supervisorId) {
+        return supervisorServiceImplementation.findById(supervisorId)
+                .map(supervisor -> {
+                    System.out.println("supervisor");
+                    supervisor.setSupervisorId(supervisor.getSupervisorId());
+                    supervisor.setSupervisorFirstName(newSupervisor.getSupervisorFirstName());
+                    supervisor.setSupervisorLastName(newSupervisor.getSupervisorLastName());
+                    supervisor.setSupervisorEmail(newSupervisor.getSupervisorEmail());
+                    return supervisorServiceImplementation.save(supervisor);
+                })
+                .orElseGet(() -> supervisorServiceImplementation.save(newSupervisor));
+    }
 
 
 
 }
+
+
+
+
+
+

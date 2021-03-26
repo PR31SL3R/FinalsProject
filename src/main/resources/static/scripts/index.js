@@ -1,30 +1,46 @@
 // Create a new intern
+
+
+
+
 function createStudent() {
 
+
+            //check if reloaded
+    if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
+        console.info( "This page is reloaded" );
+    } else {
+        console.info( "This page is not reloaded");
+    }
 
     let student = {};
     let supervisor = {};
     let supervisorID = 0;
 
     $('#btnAddStudent').click(function() {
+
         student.studentFirstName = $('#addStudentFirstName').val();
         student.studentLastName = $('#addStudentLastName').val();
         student.studentEmail = $('#studentEmail').val();
         student.studentComments = $('#studentComment').val();
         const supervisorNameAndId = $("#populateDropdownCreateStudent option:selected").text().split(" ")
+        student.studentSupervisorName = supervisorNameAndId[0];
         supervisorID = supervisorNameAndId[1]
-        console.log(supervisorID);
+
         $.ajax({
             url: "/getSupervisorById/" + supervisorID,
             method: "GET",
             contentType: 'application/JSON',
             success: function(data) {
-                console.log(data);
-                supervisor.id = data.supervisorId
-               supervisor.supervisorFirstName =  data.supervisorFirstName
-                supervisor.supervisorLastName = data.supervisorLastName
-                supervisor.supervisorEmail = data.supervisorEmail
-              //student.supervisor = supervisor
+
+                supervisor.supervisorId = data.supervisorId;
+                supervisor.supervisorId = supervisorID;
+               supervisor.supervisorFirstName =  data.supervisorFirstName;
+                supervisor.supervisorLastName = data.supervisorLastName;
+                supervisor.supervisorEmail = data.supervisorEmail;
+                 student.supervisor = supervisor;
+
+
 
             },
             error: function(error) {
@@ -40,6 +56,7 @@ function createStudent() {
             success: function() {
                 getAllStudents();
                 cancelAddStudentForm();
+
             },
             error: function(error) {
                 alert("A error occured: " + error);
@@ -72,12 +89,6 @@ function createSupervisor() {
         })
     })
 }
-
-
-
-
-
-
 // Get all students
 function getAllStudents() {
     $.ajax({
@@ -137,7 +148,7 @@ function updateStudent2(id) {
     let tempVar = 0;
 
 
-            console.log(id);
+
             $(".form-control").each(function (index) {
                 if (Number($(this).val()) === id && tempVar === 0) {
                     tempVar=1;

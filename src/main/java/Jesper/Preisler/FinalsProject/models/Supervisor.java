@@ -1,6 +1,7 @@
 package Jesper.Preisler.FinalsProject.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -20,10 +21,10 @@ public class Supervisor {
 
    String supervisorEmail;
 
-    @OneToMany(targetEntity=Student.class,cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY, orphanRemoval = true)
-    private Set < Student > students;
 
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "supervisor")
+    private Set < Student > students;
 
 
 

@@ -21,9 +21,12 @@ public class Student {
     @Column
     String studentComments;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name ="supervisor_id")
-    Supervisor supervisor;
+    @Column
+    String studentCompany;
+
+    @ManyToOne
+    @JoinColumn(name = "supervisor_id")
+    private Supervisor supervisor;
 
     public Long getStudentId() {
         return studentId;
@@ -71,5 +74,26 @@ public class Student {
 
     public void setSupervisor(Supervisor supervisor) {
         this.supervisor = supervisor;
+    }
+
+    public String getStudentCompany() {
+        return studentCompany;
+    }
+
+    public void setStudentCompany(String studentCompany) {
+        this.studentCompany = studentCompany;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "studentId=" + studentId +
+                ", studentFirstName='" + studentFirstName + '\'' +
+                ", studentLastName='" + studentLastName + '\'' +
+                ", studentEmail='" + studentEmail + '\'' +
+                ", studentComments='" + studentComments + '\'' +
+                ", studentCompany='" + studentCompany + '\'' +
+                ", supervisor=" + supervisor +
+                '}';
     }
 }
